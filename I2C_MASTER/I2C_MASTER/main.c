@@ -495,7 +495,7 @@ int main(void)
                 }
                 else
                 {
-                    // masa es float, por ejemplo 12.34 (g) o 1234.56 (g), según tu escala
+                    // masa es float
                     int32_t peso_g = (int32_t)(masa + 0.5f);   // redondea a entero
 
                     char out[24];
