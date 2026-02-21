@@ -1,0 +1,15 @@
+# Microchip Studio / AVR
+*.o
+*.elf
+*.hex
+*.map
+*.srec
+*.eep
+*.lss
+
+# Visual Studio
+.vs/
+
+# Build folders
+Debug/
+Release/
