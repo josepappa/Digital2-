@@ -61,7 +61,7 @@ int main(void)
 
     while (1)
     {
-        // ---------- LECTURA HX711 SOLO SI TE PIDIERON PESO ----------
+        // ---------- LECTURA HX711 ----------
         if(LEERPESA == 'W')
         {
             if(HX711_isReady())
