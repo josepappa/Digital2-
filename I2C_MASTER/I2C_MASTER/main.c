@@ -461,7 +461,7 @@ int main(void)
                 if(!request_color_from_slave(&rxdato1))
                 {
                     cadena("Color: TIMEOUT/FAIL\r\n");
-                    estado = ST_COLOR;   // o lo que quieras hacer si falla
+                    estado = ST_COLOR;   
                     break;
                 }
 
@@ -660,7 +660,7 @@ int main(void)
                 snprintf(out, sizeof(out), "B:%u\n", bandaflag);  // bandaflag = 0 o 1
                 cadena(out);
 
-                // Cuando termines aquí, pasas al laser
+                
                 estado = LASER;
                 break;
             }
@@ -713,7 +713,6 @@ int main(void)
                 cadena(msg);
 
                 // --------- Mostrar nivel en LCD mientras sube ----------
-                // Ajusta rangos a tu gusto
                 if(dist_corr > 0 && dist_corr < 100){
                     LCD_SET_CURSOR(15,1); LCD_WRITE_STRING("lv");
                     LCD_SET_CURSOR(15,2); LCD_WRITE_STRING("1");
@@ -735,7 +734,7 @@ int main(void)
 
                 if(hit && !motor_off_sent)
                 {
-                    motorflag = 'L'; // apagar motor (tu comando)
+                    motorflag = 'L'; // apagar motor 
 
                     if(!I2C_Master_Start()) return 0;
                     if(!I2C_Master_Write(SLAVE1_W)) { I2C_Master_Stop(); return 0; }
@@ -768,7 +767,7 @@ int main(void)
                 snprintf(m, sizeof(m), "IR2: 0x%02X\r\n", ir);
                 cadena(m);
 
-                // Tu regla: 'X' = no presencia
+                //  'X' = no presencia
                 if(ir == 'X')
                 {
                     motor_off_sent = 0;
@@ -777,15 +776,8 @@ int main(void)
                     ROJO = 0; VERDE = 0; AZUL = 0;
                     motor_apagado = 0;
 
-                    // MUY IMPORTANTE: reset del “motor_off_sent” del LASER
-                    // (como es static dentro de LASER, lo más simple es hacerlo global
-                    //  o convertirlo en variable global)
-                    // Te doy la forma rápida: mueve motor_off_sent a global.
-                    // Si no querés moverlo, entonces en LASER quitá static y hacelo global.
-
-                    ok_count = 0;         // si lo usas
-                    tare_flag = 0;        // si quieres volver a tarear
-                    // listo = 0;         // opcional
+                    ok_count = 0;         
+                    tare_flag = 0;                       
 
                     cadena("Ciclo terminado -> ST_PESANDO\r\n");
                     estado = ST_PESANDO;
